@@ -1,0 +1,12 @@
+[
+    {
+    "username":"${ECOM_EMAIL}",
+    "password":"${ECOM_PASSWORD}",
+    "productName":"Zara Coat 3"
+    },
+    {
+    "username":"rahulshetty@gmail.com",
+    "password":"Iamking@00",
+    "productName":"adida originals"
+    }
+]
