@@ -17,17 +17,18 @@ test('Assignment Login Page',async ({page})=>
     
     await page.getByRole('link', { name: 'Manage Events' }).click();
     //await page.getByRole('navigation').getByRole('link', { name: 'Manage Events' });
-    const eventTitle = 'Test Event ${Date.now()}';
+    const eventTitle = `Test Event ${Date.now()}`;
 
     await page.locator("#event-title-input").fill(eventTitle);
     await page.locator("#admin-event-form textarea").fill("This is for the Testing purpose only. Kindly dont use!!!!");
     await page.getByLabel("city").fill("Coimbatore");
     await page.getByLabel("venue").fill("SPR Gardens");
-    await page.getByLabel("Event Date & Time").fill('2026-10-29T09:15');
+    const futureDate = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10); // form only accepts future dates
+    await page.getByLabel("Event Date & Time").fill(`${futureDate}T09:15`);
     await page.getByRole('spinbutton', { name: 'Price ($)*' }).fill('60');
     await page.getByLabel("Total Seats").fill('50');
     await page.locator('#add-event-btn').click();
-     await expect(page.getByText('✓Event created!×')).toBeVisible();
+     await expect(page.getByText('Event created!')).toBeVisible();
 
   console.log(`Created event: "${eventTitle}"`);
 

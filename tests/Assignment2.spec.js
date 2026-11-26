@@ -17,7 +17,7 @@ test('Single ticket booking is eligible for refund',async ({page})=>
     //await loginAndGoToBooking(page);
 
     await page.goto("https://eventhub.rahulshettyacademy.com");
-    await page.getByTestId('event-card').first().getByTestId('book-now-btn').click();
+    await page.getByTestId('event-card').filter({ hasNotText: 'Sold Out' }).first().getByTestId('book-now-btn').click(); // skip sold-out events
 
     await page.getByLabel('Full Name').fill('Jenifer');
     await page.getByPlaceholder('you@email.com').fill('jeni@gmail.com');
@@ -55,7 +55,7 @@ test(' Group ticket booking is NOT eligible for refund',async ({page})=>
     //await loginAndGoToBooking(page);
 
     await page.goto("https://eventhub.rahulshettyacademy.com");
-    await page.getByTestId('event-card').first().getByTestId('book-now-btn').click();
+    await page.getByTestId('event-card').filter({ hasNotText: 'Sold Out' }).first().getByTestId('book-now-btn').click(); // skip sold-out events
     await page.locator('button:has-text("+")').click();
     await page.locator('button:has-text("+")').click();
 

@@ -7,7 +7,7 @@ test('Practice Login Page and Title', async ({ page }) => {
     const products = page.locator(".card-body");
     await page.goto("https://rahulshettyacademy.com/client");
     await page.locator("#userEmail").fill(email);
-    await page.locator("#userPassword").fill(env('ECOM_PRACTICE_PASSWORD'));
+    await page.locator("#userPassword").fill(env('ECOM_PASSWORD'));
     await page.locator("[value='Login']").click();
     await page.waitForLoadState('networkidle');
     await page.locator(".card-body b").first().waitFor();    //waitmechanism alternative for grab first title in the page.... for last title choose .last()
@@ -27,17 +27,12 @@ test('Practice Login Page and Title', async ({ page }) => {
     expect(bool).toBeTruthy();
 
     await page.locator("text=Checkout").click();
-    await page.locator("[placeholder*='Country']").pressSequentially("ind", { delay: 1000 });
+    // A 1000ms typing delay left the suggestion dropdown stuck open, blocking "Place Order".
+    await page.locator("[placeholder*='Country']").pressSequentially("ind", { delay: 150 });
     const dropdown = page.locator(".ta-results");
     await dropdown.waitFor();
-    const optionsCount = await dropdown.locator("button").count();
-    for (let i = 0; i < optionsCount; ++i) {
-        const text = await dropdown.locator("button").nth(i).textContent();
-        if (text === " India") {
-            await dropdown.locator("button").nth(i).click();
-            break;
-        }
-    }
+    // The option list re-renders while typing, so looping over a stale count times out; click India directly.
+    await dropdown.locator("button").filter({ hasText: /^\s*India\s*$/ }).click();
 
     await expect(page.locator(".user__name [type='text']").first()).toHaveText(email);
     await page.locator('input.input.txt').nth(1).pressSequentially('123');

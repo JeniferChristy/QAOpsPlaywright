@@ -8,7 +8,7 @@ test('Practice Login Page and Title',async ({page})=>
     const products= page.locator(".card-body");
     await page.goto("https://rahulshettyacademy.com/client");
     await page.getByPlaceholder("email@example.com").fill(email);
-    await page.getByPlaceholder("enter your passsword").fill(env('ECOM_PRACTICE_PASSWORD'));
+    await page.getByPlaceholder("enter your passsword").fill(env('ECOM_PASSWORD'));
     await page.getByRole('button',{name:"Login"}).click();
     //await page.locator("[value='Login']").click();
 
