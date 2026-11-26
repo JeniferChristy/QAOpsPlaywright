@@ -64,7 +64,7 @@ await expect(page.locator(".radiotextsty").last()).toBeChecked();
 
 //checkboxes- check
 await page.locator("#terms").click();
-await expect(await page.locator("#terms").toBeChecked()); //returns true
+await expect(page.locator("#terms")).toBeChecked(); //returns true
 
 //checkbox-uncheck
 await page.locator("#terms").uncheck();

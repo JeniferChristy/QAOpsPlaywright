@@ -11,7 +11,7 @@ test('Practice special Locators',async ({page})=>
     await page.getByText("Success! The Form has been submitted successfully!.").isVisible();
 
     //5 seconds default timeout fro expect assertions- timeout 10seconds will overcome default 5seconds timer - (step level)
-    await expect(page.getByText("Success! The Form has been submitted successfully!.")).isVisible({timeout: 10_0000}); 
+    await expect(page.getByText("Success! The Form has been submitted successfully!.")).toBeVisible({timeout: 10_000}); 
 
     await page.getByRole("link",{name:"Shop"}).click();
     await page.locator("app-card").filter({hasText: 'Nokia Edge'}).getByRole("button").click();
@@ -32,10 +32,10 @@ test('Practice Test Level time out',async ({page})=>
     await page.getByText("Success! The Form has been submitted successfully!.").isVisible();
 
     //5 seconds default timeout fro expect assertions- timeout 10seconds will overcome default 5seconds timer - (step level)
-    await slowtime(page.getByText("Success! The Form has been submitted successfully!.")).isVisible({timeout: 10_0000}); 
+    await slowtime(page.getByText("Success! The Form has been submitted successfully!.")).toBeVisible({timeout: 10_000}); 
 
     await page.getByRole("link",{name:"Shop"}).click();
-    await slowtime(page.locator(".my-4").first()).toHaveText("Shop");
+    await slowtime(page.locator(".my-4").first()).toHaveText("Shop Name");
 
     await page.locator("app-card").filter({hasText: 'Nokia Edge'}).getByRole("button").click();
 
