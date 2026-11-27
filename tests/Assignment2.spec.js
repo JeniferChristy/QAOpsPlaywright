@@ -1,8 +1,9 @@
 import{test, expect} from '@playwright/test';
 const BASE_URL      = 'https://eventhub.rahulshettyacademy.com/login';
 // ── Credentials 
-const USER_EMAIL    = 'qa!123456@gmail.com';
-const USER_PASSWORD = 'QA!123456'; 
+import { env } from '../utils/credentials';
+const USER_EMAIL    = env('EVENTHUB_QA_EMAIL');
+const USER_PASSWORD = env('EVENTHUB_QA_PASSWORD');
 
 test('Single ticket booking is eligible for refund',async ({page})=>
 {

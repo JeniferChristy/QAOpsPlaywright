@@ -29,6 +29,8 @@ jobs:
         EVENTHUB_YAHOO_PASSWORD: ${{ secrets.EVENTHUB_YAHOO_PASSWORD }}
         EVENTHUB_GMAIL_EMAIL: ${{ secrets.EVENTHUB_GMAIL_EMAIL }}
         EVENTHUB_GMAIL_PASSWORD: ${{ secrets.EVENTHUB_GMAIL_PASSWORD }}
+        EVENTHUB_QA_EMAIL: ${{ secrets.EVENTHUB_QA_EMAIL }}
+        EVENTHUB_QA_PASSWORD: ${{ secrets.EVENTHUB_QA_PASSWORD }}
       run: npx playwright test --config=playwright.service.config.js --workers=4
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
