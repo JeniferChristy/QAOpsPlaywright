@@ -1,5 +1,7 @@
 const {test, expect} = require("@playwright/test");
 
+//testing only for merge request
+
 test('Practice special Locators',async ({page})=>
 {
     await page.goto("https://rahulshettyacademy.com/angularpractice/");
